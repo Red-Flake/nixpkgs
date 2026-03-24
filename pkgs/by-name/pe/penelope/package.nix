@@ -16,12 +16,6 @@ python3.pkgs.buildPythonApplication (finalAttrs: {
     hash = "sha256-ryUG/OQsU6mecr+kSe5CD41a53xNRrPs1esL+V1lmdQ=";
   };
 
-  postPatch = ''
-    substituteInPlace pyproject.toml \
-      --replace-fail "[project.scripts]" "" \
-      --replace-fail 'penelope = "penelope:main"' ""
-  '';
-
   build-system = with python3.pkgs; [ setuptools ];
 
   # Project has no tests
@@ -33,7 +27,7 @@ python3.pkgs.buildPythonApplication (finalAttrs: {
     changelog = "https://github.com/brightio/penelope/releases/tag/${finalAttrs.src.tag}";
     license = lib.licenses.gpl3Only;
     maintainers = with lib.maintainers; [ fab ];
-    mainProgram = "penelope.py";
+    mainProgram = "penelope";
     platforms = lib.platforms.all;
   };
 })
